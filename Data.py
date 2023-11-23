@@ -4,10 +4,10 @@ import re
 
 
 mydb = mysql.connector.connect(
-    host="localhost",
+    host="127.0.0.1",
     user="root",
-    password="huyinit",
-    database="chtdttt"
+    password="Nhattu3004",
+    database="chatbot"
 )
 
 class Data:
@@ -18,11 +18,11 @@ class Data:
     def converBaitap(self, baitap):
         """Lấy dữ liệu bài tập từ database"""
         db=mydb.cursor()
-        db.execute("SELECT baiitap FROM chatbot.baitap WHERE chedo = '{baitap}'")
+        query="SELECT duongdan FROM chatbot.baitap WHERE chedo = %s"
+        db.execute(query, (baitap,))
         baitap=db.fetchall()
-
         for i in baitap:
-            self.cacbaitap.append(i[2])
+            self.cacbaitap.append(i[0])
     
     def converChedoan(self, chedoan):
         """Lấy dữ liệu chế độ ăn từ database"""

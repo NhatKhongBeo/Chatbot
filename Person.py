@@ -12,7 +12,7 @@ class Person:
         self.weight = weight
 
     def setHight(self, hight):
-        self.hight = hight
+        self.hight = hight/100
 
     def setBMI(self):
         self.bmi = self.computeBMI()
@@ -25,7 +25,10 @@ class Person:
 
     def setName(self, name):
         self.name = name
-        
+
+    def setAge(self, age):
+        self.age = age
+
     def getName(self):
         return self.name
 
@@ -37,10 +40,12 @@ class Person:
 
     def getBMI(self):
         return self.bmi
+
     def getIntensity(self):
         return self.intensity
+
     def getPhase(self):
         return self.phase
-    
+
     def computeBMI(self):
         return self.weight / (self.hight * self.hight)

@@ -1,34 +1,34 @@
 from Person import Person
 from Validate import validat_binary_answer
-from tenforflow.keras.model import load_model
+from keras.models import load_model
 from Data import Data, getThetrang
 
 person = Person()
 data =Data()
 
 def Activity():
-    print("Tên của bạn là gì?")
+    print("Tên của bạn là gì?\n")
     person.setName(input())
-    print(f"{person.getName()} bao nhiêu tuổi?")
+    print(f"{person.getName()} bao nhiêu tuổi?\n")
     person.setAge(int(input()))
-    print(f"{person.getName()} nặng bao nhiêu kg?")
-    print("Nhập số kg")
+    print(f"{person.getName()} nặng bao nhiêu kg?\n")
+    print("Nhập số kg\n")
     person.setWeight(float(input()))
-    print(f"{person.getName()} cao bao nhiêu cm?")
+    print(f"{person.getName()} cao bao nhiêu cm?\n")
     person.setHight(float(input()))
     person.setBMI()
-    print(f"Chỉ số BMI của {person.getName()} là {person.getBMI()}")
-    mathetrang = mathetrang(person.getBMI())
-    print(f"{person.getName()} đang có thể trạng là: {getThetrang(mathetrang)}")
-    print("Trước đây bạn tập luyện thể thao với mức độ nào?")
-    print("Nhập số tương ứng với lựa chọn")
-    print("1. Tôi chưa tập luyện thể thao")
-    print("2. Tôi tập luyện thể thao với mức độ thấp")
-    print("3. Tôi tập luyện thể thao với mức độ trung bình")
-    print("4. Tôi tập luyện thể thao với mức độ cao")
+    print(f"Chỉ số BMI của {person.getName()} là {person.getBMI()}\n")
+    thetrang = mathetrang(person.getBMI())
+    print(f"{person.getName()} đang có thể trạng là: {getThetrang(thetrang)}\n")
+    print("Trước đây bạn tập luyện thể thao với mức độ nào?\n")
+    print("Nhập số tương ứng với lựa chọn\n")
+    print("1. Tôi chưa tập luyện thể thao\n")
+    print("2. Tôi tập luyện thể thao với mức độ thấp\n")
+    print("3. Tôi tập luyện thể thao với mức độ trung bình\n")
+    print("4. Tôi tập luyện thể thao với mức độ cao\n")
     person.setIntensity(int(input()))
-    print("Bạn muốn tập luyện với mục đích gì?")
-    print("Nhập số tương ứng với lựa chọn")
+    print("Bạn muốn tập luyện với mục đích gì?\n")
+    print("Nhập số tương ứng với lựa chọn\n")
     print("1. Giảm cân")
     print("2. Giảm cân nhanh")
     print("3. Tăng cân")
@@ -60,21 +60,22 @@ def predict():
     model_exe = load_model(".\model_exe.h5")
     model_diet = load_model(".\model_diet.h5")
 
-    x = [
+    x = [[
         person.getHight(),
         person.getWeight(),
         person.getBMI(),
         person.getIntensity(),
         person.getPhase(),
-    ]
+    ]]
 
     y_exe = model_exe.predict(x)
     y_diet = model_diet.predict(x)
 
-    return y_exe, y_diet
+    return y_exe[0][0], y_diet[0][0]
 
 
 def recommend_exe(calo_exe, phase):
+    che_do_exe = None
     if calo_exe < 1000 and calo_exe > 700:
         che_do_exe='TL01'
     elif calo_exe < 1300 and calo_exe > 1000 and phase == "Maintenance":
@@ -98,6 +99,7 @@ def recommend_exe(calo_exe, phase):
 
 
 def recommend_diet(calo_diet):
+    
     if calo_diet < 2000 and calo_diet > 1700:
         diet='DI04'
     elif calo_diet < 2200 and calo_diet > 2000:
@@ -120,7 +122,7 @@ def recommend_diet(calo_diet):
 def Recommend_respon_diet(chedoan):
     print("""Theo như thông tin bạn cung cấp, tôi đã tìm được 
         chế độ ăn phù hợp cho bạn như sau:""")
-    while(not chedoan.empty()):
+    while(len(chedoan)>0):
         chedo=chedoan.pop()
         print(chedo)
         print("Bạn đã hài lòng với thực đơn này chưa?")
@@ -136,7 +138,7 @@ def Recommend_respon_diet(chedoan):
 def Recommend_respon_exe(cacbaitap):
     print("""Theo như thông tin bạn cung cấp, tôi đã tìm được 
           chế độ tập luyện phù hợp cho bạn như sau:""")
-    while(not cacbaitap.empty()):
+    while(len(cacbaitap)>0):
         baitap=cacbaitap.pop()
         print(baitap)
         print("Bạn có thấy bài tập này phù hợp với bạn không?")
@@ -185,26 +187,30 @@ def Recommend_respon_both(cacbaitap, chedoan):
 def main():
     data = Data()
     print(
-        "Xin chào, tôi là chatbot tư vấn chế độ dinh dưỡng và luyện tập cho người tập gym"
+        "Xin chào, tôi là chatbot tư vấn chế độ dinh dưỡng và luyện tập cho người tập gym\n"
     )
-    print("Để thực hiện việc tư vấn tôi cần biết một số thông tin của bạn")
-    provide_info = input("Bạn có sẵn sàng cung cấp thông tin cho tôi không?")
+    print("Để thực hiện việc tư vấn tôi cần biết một số thông tin của bạn\n")
+    provide_info = input("Bạn có sẵn sàng cung cấp thông tin cho tôi không?\n")
 
     while True:
         if validat_binary_answer(provide_info):
             tuvan = Activity()
 
             calo_exe, calo_diet = predict()
+            print(calo_exe, calo_diet)
             cacbaitap = recommend_exe(calo_exe, person.getPhase())
-            chedoan = recommend_diet(calo_diet)
+            #chedoan = recommend_diet(calo_diet)
             if tuvan == 1:
-                Recommend_respon_diet(chedoan)
+                a=1
+                #Recommend_respon_diet(chedoan)
             elif tuvan == 2:
-                b = 2
+                Recommend_respon_exe(recommend_exe(calo_exe, person.getPhase()))
             else:
                 b = 3
 
         elif not validat_binary_answer(provide_info):
             b = 1
         else:
-            print("Câu trả lời không phù hợp.Bạn vui lòng nhập lại")
+            print("Câu trả lời không phù hợp.Bạn vui lòng nhập lại\n")
+if __name__ == "__main__":
+    main()
