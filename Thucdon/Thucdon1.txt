@@ -1,1 +1,35 @@
-1
+giam can
+Ngày 1:
+- Bữa sáng: Bánh mì sandwich trứng với rau sống và mận tươi.
+- Bữa trưa: Salad gà với sốt dầu ô liu và cà chua, kèm bánh mì lúa mạch.
+- Bữa tối: Cá hồi nướng, rau bina và gạo lứt.
+
+Ngày 2:
+- Bữa sáng: Sữa chua tự nhiên với lựu và hạt óc chó.
+- Bữa trưa: Thịt gà nướng với rau măng tây và cơm lứt.
+- Bữa tối: Cá nướng, rau xanh và quinoa.
+
+Ngày 3:
+- Bữa sáng: Bánh mì sandwich gà với rau sống và chuối.
+- Bữa trưa: Salad cá hồi với sốt dầu ô liu, cà chua và bánh mì lúa mạch.
+- Bữa tối: Thịt lợn nạc nướng, rau cải và gạo lứt.
+
+Ngày 4:
+- Bữa sáng: Bánh mì sandwich trứng với rau sống và cam tươi.
+- Bữa trưa: Thịt gà nướng với rau bina và mì ốc.
+- Bữa tối: Cá hồi nướng, bông cải xanh và bánh mì lúa mạch.
+
+Ngày 5:
+- Bữa sáng: Sữa hạt lanh với dứa tươi và hạt óc chó.
+- Bữa trưa: Thịt gà nướng với rau xanh và cơm lứt.
+- Bữa tối: Thịt lợn nạc nướng, rau măng tây và quinoa.
+
+Ngày 6:
+- Bữa sáng: Bánh mì sandwich gà với rau sống và chuối.
+- Bữa trưa: Salad cá hồi với sốt dầu ô liu, cà chua và bánh mì lúa mạch.
+- Bữa tối: Cá hồi nướng, rau bina và gạo lứt.
+
+Ngày 7:
+- Bữa sáng: Sữa chua tự nhiên với lựu và hạt óc chó.
+- Bữa trưa: Thịt gà nướng với rau măng tây và mì ốc.
+- Bữa tối: Thịt lợn nạc nướng, rau cải và bánh mì lúa mạch.
