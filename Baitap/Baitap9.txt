@@ -1,4 +1,4 @@
-Thứ Hai: Tăng Cường Sức Mạnh và Cardio Nhẹ - Tăng cường độ
+Thứ Hai: 
 - Deadlifts: 4 sets x 8 reps
 - Bench Press: 3 sets x 10 reps
 - Pull-ups: 3 sets x 10 reps
@@ -6,7 +6,7 @@ Thứ Hai: Tăng Cường Sức Mạnh và Cardio Nhẹ - Tăng cường độ
 - Nhảy Jumping Jack: 3 sets x 25 reps
 - Cardio nhẹ: 20 phút (chọn một hoạt động như chạy nhẹ hoặc đạp xe)
 
-Thứ Ba: Cardio HIIT và Toàn diện - Tăng cường độ
+Thứ Ba:
 - Cardio HIIT: 25 phút (nhảy dây, sprints)
 - Dumbbell Lunges: 3 sets x 12 reps mỗi chân
 - Bent-over Rows: 3 sets x 10 reps mỗi tay
@@ -15,21 +15,21 @@ Thứ Ba: Cardio HIIT và Toàn diện - Tăng cường độ
 
 Thứ Tư: Nghỉ ngơi hoặc Yoga/Stretching nhẹ nhàng
 
-Thứ Năm: Cardio và Tăng Cường Cơ Dưới - Tăng cường độ
+Thứ Năm: 
 - Cardio: 35 phút (bơi lội hoặc đi bộ nhanh)
 - Front Squats: 3 sets x 10 reps
 - Leg Press: 3 sets x 12 reps
 - Calf Raises: 4 sets x 15 reps
 - Plank: 3 sets, giữ trong 45 giây đến 1 phút mỗi set
 
-Thứ Sáu: Cardio và Toàn diện - Tăng cường độ
+Thứ Sáu: 
 - Cardio: 25 phút (chạy nhẹ hoặc đạp xe)
 - Overhead Press: 3 sets x 10 reps
 - Lat Pulldowns: 3 sets x 12 reps
 - Bicep Curls: 3 sets x 12 reps
 - Side Plank: 3 sets, giữ trong 40 giây mỗi bên
 
-Thứ Bảy: Cardio Đa Dạng - Tăng cường độ
+Thứ Bảy: 
 - Cardio tự do: 50 phút (lựa chọn một hoạt động yêu thích của bạn như bơi lội, đạp xe, hoặc đi bộ nhanh)
 
 Chủ Nhật: Nghỉ ngơi
