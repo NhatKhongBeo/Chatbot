@@ -1,1 +1,55 @@
-5
+Thứ 2:
+Bữa sáng: 1 bát cháo yến mạch với 1 quả trứng luộc
+Bữa phụ sáng: 1 quả chuối
+Bữa trưa: 200g thịt bò nạc, 1 bát cơm, 1 đĩa rau luộc
+Bữa phụ chiều: 1 ly sinh tố protein
+Bữa tối: 200g cá hồi, 1 bát cơm, 1 đĩa rau củ luộc
+Bữa phụ tối: 1 quả táo
+
+Thứ 3:
+Bữa sáng: 2 lát bánh mì nguyên cám với 1 quả bơ
+Bữa phụ sáng: 1 hộp sữa chua Hy Lạp
+Bữa trưa: 200g thịt gà, 1 bát cơm, 1 đĩa salad
+Bữa phụ chiều: 1 nắm hạt óc chó
+Bữa tối: 200g tôm, 1 bát cơm, 1 đĩa rau củ luộc
+Bữa phụ tối: 1 ly sinh tố bơ
+
+Thứ 4:
+Bữa sáng: 1 bát hủ tiếu thịt
+Bữa phụ sáng: 1 quả chuối
+Bữa trưa: 200g thịt heo nạc, 1 bát cơm, 1 đĩa rau luộc
+Bữa phụ chiều: 1 muỗng whey protein
+Bữa tối: 200g cá ngừ, 1 bát cơm, 1 đĩa rau củ luộc
+Bữa phụ tối: 1 quả táo
+
+Thứ 5:
+Bữa sáng: 1 tô phở bò
+Bữa phụ sáng: 1 hộp sữa chua Hy Lạp
+Bữa trưa: 200g trứng gà luộc, 1 bát cơm, 1 đĩa salad
+Bữa phụ chiều: 1 nắm hạt hạnh nhân
+Bữa tối: 200g ức gà, 1 bát cơm, 1 đĩa rau củ luộc
+Bữa phụ tối: 1 ly sinh tố protein
+
+Thứ 6:
+* Bữa sáng: 1 bát ngũ cốc nguyên cám với sữa tươi không đường
+* Bữa phụ sáng: 1 quả chuối
+* Bữa trưa: 200g cá hồi, 1 bát cơm, 1 đĩa salad
+* Bữa phụ chiều: 1 muỗng whey protein
+* Bữa tối: 200g thịt bò nạc, 1 bát cơm, 1 đĩa rau củ luộc
+* Bữa phụ tối: 1 quả táo
+
+Thứ 7:
+Bữa sáng: 2 quả trứng luộc với bánh mì nguyên cám
+Bữa phụ sáng: 1 hộp sữa chua Hy Lạp
+Bữa trưa: 200g tôm, 1 bát cơm, 1 đĩa rau luộc
+Bữa phụ chiều: 1 nắm hạt óc chó
+Bữa tối: 200g thịt gà, 1 bát cơm, 1 đĩa rau củ luộc
+Bữa phụ tối: 1 ly sinh tố bơ
+
+Chủ nhật:
+Bữa sáng: 1 bát cháo yến mạch với sữa tươi không đường
+Bữa phụ sáng: 1 quả chuối
+Bữa trưa: 200g ức gà, 1 bát cơm, 1 đĩa salad
+Bữa phụ chiều: 1 muỗng whey protein
+Bữa tối: 200g cá ngừ, 1 bát cơm, 1 đĩa rau củ luộc
+Bữa phụ tối: 1 quả táo
