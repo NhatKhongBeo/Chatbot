@@ -1,32 +1,57 @@
 from Person import Person
-from Validate import validat_binary_answer
-from tensorflow.keras.model import load_model
-from Data import Data, getThetrang
+from Validate import *
+from tensorflow.keras.models import load_model
+from Data import *
 
 person = Person()
-data =Data()
+data = Data()
+
 
 def Activity():
-    print("Tên của bạn là gì?")
-    person.setName(input())
-    print(f"{person.getName()} bao nhiêu tuổi?")
-    person.setAge(int(input()))
+    print("Tên của bạn là gì?\n")
+    while True:
+        name = input()
+        if check_name(name) == name:
+            person.setName(input())
+            break
+        else:
+            print("Tên nhập không hợp vệ, vui lòng nhập lại\n")
+
+    print(f"{person.getName()} bao nhiêu tuổi?\n")
+    while True:
+        age = check_age(input())
+        if age.isdigit():
+            person.setAge(age)
+            break
+        else:
+            print("Tuổi nhập không hợp vệ, vui lòng nhập lại\n")
+
     print(f"{person.getName()} nặng bao nhiêu kg?")
-    print("Nhập số kg")
-    person.setWeight(float(input()))
+    while True:
+        print("Nhập số kg\n")
+        weight = check_weight(input())
+        if weight.isdigit():
+            person.setWeight(weight)
+            break
+        else:
+            print("Cân nặng nhập không hợp vệ, vui lòng nhập lại\n")
+
     print(f"{person.getName()} cao bao nhiêu cm?")
-    person.setHight(float(input()))
+    while True:
+        height = check_height(input())
+        if height.isdigit():
+            person.setHight(height)
+            break
+        else:
+            print("Chiều cao nhập không hợp vệ, vui lòng nhập lại\n")
+
     person.setBMI()
     print(f"Chỉ số BMI của {person.getName()} là {person.getBMI()}")
     mathetrang = mathetrang(person.getBMI())
     print(f"{person.getName()} đang có thể trạng là: {getThetrang(mathetrang)}")
-    print("Trước đây bạn tập luyện thể thao với mức độ nào?")
-    print("Nhập số tương ứng với lựa chọn")
-    print("1. Tôi chưa tập luyện thể thao")
-    print("2. Tôi tập luyện thể thao với mức độ thấp")
-    print("3. Tôi tập luyện thể thao với mức độ trung bình")
-    print("4. Tôi tập luyện thể thao với mức độ cao")
-    person.setIntensity(int(input()))
+
+    input = getTapLuyen()
+    person.setIntensity(input)
     print("Bạn muốn tập luyện với mục đích gì?")
     print("Nhập số tương ứng với lựa chọn")
     print("1. Giảm cân")
@@ -42,19 +67,21 @@ def Activity():
     tuvan = int(input())
     return tuvan
 
+
 def mathetrang(bmi):
     if bmi < 18.5:
-        return 'TT01'
+        return "TT01"
     elif bmi < 25:
-        return 'TT02'
+        return "TT02"
     elif bmi < 30:
-        return 'TT03'
+        return "TT03"
     elif bmi < 35:
-        return 'TT04'
+        return "TT04"
     elif bmi < 40:
-        return 'TT05'
+        return "TT05"
     else:
-        return 'TT06'
+        return "TT06"
+
 
 def predict():
     model_exe = load_model(".\model_exe.h5")
@@ -76,17 +103,19 @@ def predict():
 
 def recommend_exe(calo_exe, phase):
     if calo_exe < 1100:
-        che_do_exe='TL01'
+        che_do_exe = "TL01"
     elif calo_exe < 1300 and calo_exe > 1000 and phase == "Maintenance":
-        che_do_exe='TL04'
-    elif  calo_exe < 1400 and calo_exe > 1200 and phase in ["Muscle gain", "Weight gain"]:
-        che_do_exe='TL03'
+        che_do_exe = "TL04"
+    elif (
+        calo_exe < 1400 and calo_exe > 1200 and phase in ["Muscle gain", "Weight gain"]
+    ):
+        che_do_exe = "TL03"
     elif calo_exe < 1500 and calo_exe > 1300:
-        che_do_exe='TL03'
+        che_do_exe = "TL03"
     elif calo_exe < 1300 and calo_exe > 1100:
-        che_do_exe='TL02'
-    elif calo_exe > 1600 :
-        che_do_exe='TL05'
+        che_do_exe = "TL02"
+    elif calo_exe > 1600:
+        che_do_exe = "TL05"
 
     data.converBaitap(che_do_exe)
     list_exe = []
@@ -96,17 +125,15 @@ def recommend_exe(calo_exe, phase):
     return list_exe
 
 
-
 def recommend_diet(calo_diet):
-    
     if calo_diet < 2300 and calo_diet > 1800:
-        diet='DI04'
+        diet = "DI04"
     elif calo_diet < 2600 and calo_diet > 2300:
-        diet='DI03'
+        diet = "DI03"
     elif calo_diet < 1800 and calo_diet > 1600:
-        diet='DI02'
+        diet = "DI02"
     elif calo_diet < 1600 and calo_diet > 1400:
-        diet='DI01'
+        diet = "DI01"
 
     data.converChedoan(diet)
 
@@ -116,11 +143,14 @@ def recommend_diet(calo_diet):
             list_diet.append(f.read())
     return list_diet
 
+
 def Recommend_respon_diet(chedoan):
-    print("""Theo như thông tin bạn cung cấp, tôi đã tìm được 
-        chế độ ăn phù hợp cho bạn như sau:""")
-    while(not chedoan.empty()):
-        chedo=chedoan.pop()
+    print(
+        """Theo như thông tin bạn cung cấp, tôi đã tìm được 
+        chế độ ăn phù hợp cho bạn như sau:"""
+    )
+    while not chedoan.empty():
+        chedo = chedoan.pop()
         print(chedo)
         print("Bạn đã hài lòng với thực đơn này chưa?")
         print("1. Rồi")
@@ -132,11 +162,14 @@ def Recommend_respon_diet(chedoan):
     print("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
     print("Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi")
 
+
 def Recommend_respon_exe(cacbaitap):
-    print("""Theo như thông tin bạn cung cấp, tôi đã tìm được 
-          chế độ tập luyện phù hợp cho bạn như sau:""")
-    while(not cacbaitap.empty()):
-        baitap=cacbaitap.pop()
+    print(
+        """Theo như thông tin bạn cung cấp, tôi đã tìm được 
+          chế độ tập luyện phù hợp cho bạn như sau:"""
+    )
+    while not cacbaitap.empty():
+        baitap = cacbaitap.pop()
         print(baitap)
         print("Bạn có thấy bài tập này phù hợp với bạn không?")
         print("1. Rồi")
@@ -148,39 +181,42 @@ def Recommend_respon_exe(cacbaitap):
     print("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
     print("Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi")
 
+
 def Recommend_respon_both(cacbaitap, chedoan):
-    print("""Theo như thông tin bạn cung cấp, tôi đã tìm được
-          chế độ tập luyện và chế độ ăn uống phù hợp cho bạn như sau:""")
-    tmp=1
-    chedo=""""""
-    baitap=""""""
-    while(not cacbaitap.empty() or not chedoan.empty()):
-        if tmp==1:
-            baitap=cacbaitap.pop()
-            chedo=chedoan.pop()
-        if tmp==2:
-            baitap=cacbaitap.pop()
-        if tmp==3:
-            chedo=chedoan.pop()
+    print(
+        """Theo như thông tin bạn cung cấp, tôi đã tìm được
+          chế độ tập luyện và chế độ ăn uống phù hợp cho bạn như sau:"""
+    )
+    tmp = 1
+    chedo = """"""
+    baitap = """"""
+    while not cacbaitap.empty() or not chedoan.empty():
+        if tmp == 1:
+            baitap = cacbaitap.pop()
+            chedo = chedoan.pop()
+        if tmp == 2:
+            baitap = cacbaitap.pop()
+        if tmp == 3:
+            chedo = chedoan.pop()
         print(baitap)
         print(chedo)
         print("Bạn có hài lòng với sự tư vấn không")
         print("1. Rồi")
         print("2. Tôi muốn xem lịch tập khác")
         print("3. Tôi muốn xem thực đơn khác")
-        i=int(input())
+        i = int(input())
         if i == 1:
             print("Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi")
             break
         elif i == 2:
-            tmp=2
+            tmp = 2
         elif i == 3:
-            tmp=3
+            tmp = 3
     print("Hiện tại chúng tôi đã hết những thực đơn và bài tập phù hợp với bạn")
     print("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
     print("Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi")
 
-    
+
 def main():
     data = Data()
     print(
@@ -207,3 +243,7 @@ def main():
             b = 1
         else:
             print("Câu trả lời không phù hợp.Bạn vui lòng nhập lại")
+
+
+if __name__ == "__main__":
+    main()

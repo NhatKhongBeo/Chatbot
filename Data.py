@@ -25,11 +25,9 @@ class Data:
     def converChedoan(self, chedoan):
         """Lấy dữ liệu chế độ ăn từ database"""
         db = mydb.cursor()
-        db.execute(
-            "SELECT duongdan FROM chatbot.thucdon WHERE matd = '{}'".format(chedoan)
-        )
+        query = "SELECT duongdan FROM chatbot.thucdon WHERE chedo = %s"
+        db.execute(query, (chedoan,))
         chedoan = db.fetchall()
-
         for i in chedoan:
             self.chedoan.append(i[0])
 
@@ -43,8 +41,31 @@ class Data:
 def getThetrang(mathetrang):
     """Lấy dữ liệu thể trạng từ database"""
     db = mydb.cursor()
-    db.execute(
-        "SELECT thetrang FROM chatbot.thetrang where math='{}'".format(mathetrang)
-    )
+    query = "SELECT thetrang FROM chatbot.thetrang WHERE math = %s"
+    db.execute(query, (mathetrang,))
     thetrang = db.fetchall()
     return thetrang[0][0]
+
+def getTapLuyen():
+    """Lấy dữ liệu tập luyện từ database"""
+    db = mydb.cursor()
+    query = "SELECT mota FROM chatbot.muctapluyen"
+    db.execute(query)
+    tapluyen = db.fetchall()
+    
+    print("Trước đây bạn tập luyện thể thao với mức độ nào?")
+    print("Nhập số tương ứng với lựa chọn")
+    
+    count=1
+    while count <= len(tapluyen):
+        print(f'{count}. {tapluyen[count-1][0]}')
+        count += 1
+    while True:
+        try:
+            input = int(input())
+            if tapluyen > 0 and tapluyen <= len(tapluyen):
+                return input
+            else:
+                print("Bạn đã nhập sai, vui lòng nhập lại")
+        except:
+            print("Bạn đã nhập sai, vui lòng nhập lại")
