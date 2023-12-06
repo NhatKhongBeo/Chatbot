@@ -25,7 +25,7 @@ class Data:
     def converChedoan(self, chedoan):
         """Lấy dữ liệu chế độ ăn từ database"""
         db = mydb.cursor()
-        query = "SELECT duongdan FROM chatbot.thucdon WHERE chedo = %s"
+        query = "SELECT duongdan FROM chatbot.thucdon WHERE matd = %s"
         db.execute(query, (chedoan,))
         chedoan = db.fetchall()
         for i in chedoan:

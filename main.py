@@ -84,11 +84,13 @@ def predict():
     model_diet = load_model(".\model_diet.h5")
 
     x = [
-        person.getHight(),
-        person.getWeight(),
-        person.getBMI(),
-        person.getIntensity(),
-        person.getPhase(),
+        [
+            person.getHight(),
+            person.getWeight(),
+            person.getBMI(),
+            person.getIntensity(),
+            person.getPhase(),
+        ]
     ]
 
     y_exe = model_exe.predict(x)
@@ -97,26 +99,47 @@ def predict():
     return y_exe, y_diet
 
 
+# def recommend_exe(calo_exe, phase):
+#     if calo_exe < 1100:
+#         che_do_exe = "TL01"
+#     elif calo_exe < 1300 and calo_exe > 1000 and phase == "Maintenance":
+#         che_do_exe = "TL04"
+#     elif (
+#         calo_exe < 1400 and calo_exe > 1200 and phase in ["Muscle gain", "Weight gain"]
+#     ):
+#         che_do_exe = "TL03"
+#     elif calo_exe < 1500 and calo_exe > 1300:
+#         che_do_exe = "TL03"
+#     elif calo_exe < 1300 and calo_exe > 1100:
+#         che_do_exe = "TL02"
+#     elif calo_exe > 1600:
+#         che_do_exe = "TL05"
+
+
+#     data.converBaitap(che_do_exe)
+#     list_exe = []
+#     for i in data.getCacbaitap():
+#         with open(i, "r") as f:
+#             list_exe.append(f.read())
+#     return list_exe
 def recommend_exe(calo_exe, phase):
     if calo_exe < 1100:
         che_do_exe = "TL01"
-    elif calo_exe < 1300 and calo_exe > 1000 and phase == "Maintenance":
+    elif 1100 < calo_exe < 1300 and phase == "Maintenance":
         che_do_exe = "TL04"
-    elif (
-        calo_exe < 1400 and calo_exe > 1200 and phase in ["Muscle gain", "Weight gain"]
-    ):
+    elif 1200 < calo_exe < 1400 and phase in ["Muscle gain", "Weight gain"]:
         che_do_exe = "TL03"
-    elif calo_exe < 1500 and calo_exe > 1300:
+    elif 1300 < calo_exe < 1500:
         che_do_exe = "TL03"
-    elif calo_exe < 1300 and calo_exe > 1100:
+    elif 1100 < calo_exe < 1300:
         che_do_exe = "TL02"
-    elif calo_exe > 1600:
+    elif calo_exe > 1500:
         che_do_exe = "TL05"
 
     data.converBaitap(che_do_exe)
     list_exe = []
     for i in data.getCacbaitap():
-        with open(i, "r") as f:
+        with open(i, "r", encoding="utf-8", errors="replace") as f:
             list_exe.append(f.read())
     return list_exe
 
@@ -135,7 +158,7 @@ def recommend_diet(calo_diet):
 
     list_diet = []
     for i in data.getChedoan():
-        with open(i, "r") as f:
+        with open(i, "r", encoding="utf-8", errors="replace") as f:
             list_diet.append(f.read())
     return list_diet
 
@@ -145,7 +168,7 @@ def Recommend_respon_diet(chedoan):
         """Theo như thông tin bạn cung cấp, tôi đã tìm được 
         chế độ ăn phù hợp cho bạn như sau:"""
     )
-    while not chedoan.empty():
+    while len(chedoan) > 0:
         chedo = chedoan.pop()
         print(chedo)
         print("Bạn đã hài lòng với thực đơn này chưa?")
@@ -162,9 +185,9 @@ def Recommend_respon_diet(chedoan):
 def Recommend_respon_exe(cacbaitap):
     print(
         """Theo như thông tin bạn cung cấp, tôi đã tìm được 
-          chế độ tập luyện phù hợp cho bạn như sau:"""
+chế độ tập luyện phù hợp cho bạn như sau:"""
     )
-    while not cacbaitap.empty():
+    while len(cacbaitap) > 0:
         baitap = cacbaitap.pop()
         print(baitap)
         print("Bạn có thấy bài tập này phù hợp với bạn không?")
@@ -186,14 +209,31 @@ def Recommend_respon_both(cacbaitap, chedoan):
     tmp = 1
     chedo = """"""
     baitap = """"""
-    while not cacbaitap.empty() or not chedoan.empty():
+    while len(cacbaitap) > 0 or not len(chedoan) > 0:
         if tmp == 1:
-            baitap = cacbaitap.pop()
-            chedo = chedoan.pop()
+            try:
+                baitap = cacbaitap.pop()
+                chedo = chedoan.pop()
+            except IndexError:
+                print(
+                    "Hiện tại chúng tôi đã hết những thực đơn và bài tập phù hợp với bạn"
+                )
+                print("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
+                break
         if tmp == 2:
-            baitap = cacbaitap.pop()
+            try:
+                baitap = cacbaitap.pop()
+            except IndexError:
+                print("Hiện tại chúng tôi đã hết những bài tập phù hợp với bạn")
+                print("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
+                break
         if tmp == 3:
-            chedo = chedoan.pop()
+            try:
+                chedo = chedoan.pop()
+            except IndexError:
+                print("Hiện tại chúng tôi đã hết những thực đơn phù hợp với bạn")
+                print("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
+                break
         print(baitap)
         print(chedo)
         print("Bạn có hài lòng với sự tư vấn không")
@@ -208,20 +248,19 @@ def Recommend_respon_both(cacbaitap, chedoan):
             tmp = 2
         elif i == 3:
             tmp = 3
-    print("Hiện tại chúng tôi đã hết những thực đơn và bài tập phù hợp với bạn")
-    print("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
-    print("Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi")
+    print("Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi")
+    
 
 
 def main():
     data = Data()
-    print(
+    person= Person()
+    while True:
+        print(
         "Xin chào, tôi là chatbot tư vấn chế độ dinh dưỡng và luyện tập cho người tập gym"
     )
-    print("Để thực hiện việc tư vấn tôi cần biết một số thông tin của bạn")
-    provide_info = input("Bạn có sẵn sàng cung cấp thông tin cho tôi không?\n")
-
-    while True:
+        print("Để thực hiện việc tư vấn tôi cần biết một số thông tin của bạn")
+        provide_info = input("Bạn có sẵn sàng cung cấp thông tin cho tôi không?\n")
         if validat_binary_answer(provide_info):
             tuvan = Activity()
 
@@ -231,9 +270,9 @@ def main():
             if tuvan == 1:
                 Recommend_respon_diet(chedoan)
             elif tuvan == 2:
-                b = 2
+                Recommend_respon_exe(cacbaitap)
             else:
-                b = 3
+                Recommend_respon_both(cacbaitap, chedoan)
 
         elif not validat_binary_answer(provide_info):
             b = 1
