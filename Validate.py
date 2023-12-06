@@ -14,13 +14,15 @@ def check_int(input):
     try:
         return int(input)
     except ValueError:
-        return "Lỗi: Bạn cần nhập số nguyên."
+        return None
+
 
 def check_float(input):
     try:
         return float(input)
     except ValueError:
-        return "Lỗi: Bạn cần nhập số thực."
+        return None
+
 
 def check_name(input):
     try:
@@ -35,30 +37,32 @@ def check_name(input):
 
 def check_age(input):
     age = check_int(input)
-    if age.isdigit():
+    if age is not None:
         try:
             if age < 16 or age > 60:
                 raise ValueError("Lỗi: Tuổi không hợp lệ.")
             return age
         except ValueError as ve:
-            return ve
+            return None
+
 
 def check_weight(input):
     weight = check_float(input)
-    if weight.isdigit():
+    if weight is not None:
         try:
             if weight < 30 or weight > 180:
                 raise ValueError("Lỗi: Cân nặng không hợp lệ.")
             return weight
         except ValueError as ve:
-            return ve
+            return None
+
 
 def check_height(input):
     height = check_float(input)
-    if height.isdigit():
+    if height is not None:
         try:
             if height < 130 or height > 220:
                 raise ValueError("Lỗi: Chiều cao không hợp lệ.")
             return height
         except ValueError as ve:
-            return ve
+            return None

@@ -8,11 +8,11 @@ data = Data()
 
 
 def Activity():
-    print("Tên của bạn là gì?\n")
+    print("Tên của bạn là gì?")
     while True:
         name = input()
         if check_name(name) == name:
-            person.setName(input())
+            person.setName(name)
             break
         else:
             print("Tên nhập không hợp vệ, vui lòng nhập lại\n")
@@ -20,7 +20,7 @@ def Activity():
     print(f"{person.getName()} bao nhiêu tuổi?\n")
     while True:
         age = check_age(input())
-        if age.isdigit():
+        if age is not None:
             person.setAge(age)
             break
         else:
@@ -30,7 +30,7 @@ def Activity():
     while True:
         print("Nhập số kg\n")
         weight = check_weight(input())
-        if weight.isdigit():
+        if weight is not None:
             person.setWeight(weight)
             break
         else:
@@ -39,7 +39,7 @@ def Activity():
     print(f"{person.getName()} cao bao nhiêu cm?")
     while True:
         height = check_height(input())
-        if height.isdigit():
+        if height is not None:
             person.setHight(height)
             break
         else:
@@ -47,19 +47,15 @@ def Activity():
 
     person.setBMI()
     print(f"Chỉ số BMI của {person.getName()} là {person.getBMI()}")
-    mathetrang = mathetrang(person.getBMI())
-    print(f"{person.getName()} đang có thể trạng là: {getThetrang(mathetrang)}")
+    matt = mathetrang(person.getBMI())
+    print(f"{person.getName()} đang có thể trạng là: {getThetrang(matt)}")
 
-    input = getTapLuyen()
-    person.setIntensity(input)
-    print("Bạn muốn tập luyện với mục đích gì?")
-    print("Nhập số tương ứng với lựa chọn")
-    print("1. Giảm cân")
-    print("2. Giảm cân nhanh")
-    print("3. Tăng cân")
-    print("4. Giữ cân")
-    print("5. Tăng cơ")
-    person.setPhase(int(input()))
+    tmp = getTapLuyen()
+    person.setIntensity(tmp)
+
+    tmp = getMucDich()
+    person.setPhase(tmp)
+
     print("Bạn muốn tư vấn về cái gì?")
     print("1. Chế độ dinh dưỡng")
     print("2. Chế độ luyện tập")
@@ -223,7 +219,7 @@ def main():
         "Xin chào, tôi là chatbot tư vấn chế độ dinh dưỡng và luyện tập cho người tập gym"
     )
     print("Để thực hiện việc tư vấn tôi cần biết một số thông tin của bạn")
-    provide_info = input("Bạn có sẵn sàng cung cấp thông tin cho tôi không?")
+    provide_info = input("Bạn có sẵn sàng cung cấp thông tin cho tôi không?\n")
 
     while True:
         if validat_binary_answer(provide_info):

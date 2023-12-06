@@ -46,25 +46,51 @@ def getThetrang(mathetrang):
     thetrang = db.fetchall()
     return thetrang[0][0]
 
+
 def getTapLuyen():
     """Lấy dữ liệu tập luyện từ database"""
     db = mydb.cursor()
     query = "SELECT mota FROM chatbot.muctapluyen"
     db.execute(query)
     tapluyen = db.fetchall()
-    
+
     print("Trước đây bạn tập luyện thể thao với mức độ nào?")
     print("Nhập số tương ứng với lựa chọn")
-    
-    count=1
+
+    count = 1
     while count <= len(tapluyen):
-        print(f'{count}. {tapluyen[count-1][0]}')
+        print(f"{count}. {tapluyen[count-1][0]}")
         count += 1
     while True:
         try:
-            input = int(input())
-            if tapluyen > 0 and tapluyen <= len(tapluyen):
-                return input
+            tmp = int(input())
+            if tmp > 0 and tmp <= len(tapluyen):
+                return tmp
+            else:
+                print("Bạn đã nhập sai, vui lòng nhập lại")
+        except:
+            print("Bạn đã nhập sai, vui lòng nhập lại")
+
+
+def getMucDich():
+    """Lấy dữ liệu mục đích từ database"""
+    db = mydb.cursor()
+    query = "SELECT mota FROM chatbot.mucdich"
+    db.execute(query)
+    mucdich = db.fetchall()
+
+    print("Bạn muốn tập luyện với mục đích gì?")
+    print("Nhập số tương ứng với lựa chọn")
+
+    count = 1
+    while count <= len(mucdich):
+        print(f"{count}. {mucdich[count-1][0]}")
+        count += 1
+    while True:
+        try:
+            tmp = int(input())
+            if tmp > 0 and tmp <= len(mucdich):
+                return tmp
             else:
                 print("Bạn đã nhập sai, vui lòng nhập lại")
         except:
