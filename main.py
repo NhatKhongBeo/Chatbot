@@ -2,12 +2,14 @@ from Person import Person
 from Validate import *
 from tensorflow.keras.models import load_model
 from Data import *
+import time
 
 person = Person()
 data = Data()
 
 
 def Activity():
+    time.sleep(1)
     print("Tên của bạn là gì?")
     while True:
         name = input()
@@ -15,27 +17,30 @@ def Activity():
             person.setName(name)
             break
         else:
-            print("Tên nhập không hợp vệ, vui lòng nhập lại\n")
-
-    print(f"{person.getName()} bao nhiêu tuổi?\n")
+            time.sleep(1)
+            print("Tên nhập không hợp vệ, vui lòng nhập lại")
+    time.sleep(1)
+    print(f"{person.getName()} bao nhiêu tuổi?")
     while True:
         age = check_age(input())
         if age is not None:
             person.setAge(age)
             break
         else:
-            print("Tuổi nhập không hợp vệ, vui lòng nhập lại\n")
-
+            time.sleep(1)
+            print("Tuổi nhập không hợp vệ, vui lòng nhập lại")
+    time.sleep(1)
     print(f"{person.getName()} nặng bao nhiêu kg?")
     while True:
-        print("Nhập số kg\n")
+        print("Nhập số kg")
         weight = check_weight(input())
         if weight is not None:
             person.setWeight(weight)
             break
         else:
-            print("Cân nặng nhập không hợp vệ, vui lòng nhập lại\n")
-
+            time.sleep(1)
+            print("Cân nặng nhập không hợp vệ, vui lòng nhập lại")
+    time.sleep(1)
     print(f"{person.getName()} cao bao nhiêu cm?")
     while True:
         height = check_height(input())
@@ -43,11 +48,14 @@ def Activity():
             person.setHight(height)
             break
         else:
-            print("Chiều cao nhập không hợp vệ, vui lòng nhập lại\n")
+            time.sleep(1)
+            print("Chiều cao nhập không hợp vệ, vui lòng nhập lại")
 
     person.setBMI()
-    print(f"Chỉ số BMI của {person.getName()} là {person.getBMI()}")
+    time.sleep(1)
+    print(f"Chỉ số BMI của {person.getName()} là {person.getBMI():.2f}")
     matt = mathetrang(person.getBMI())
+    time.sleep(1)
     print(f"{person.getName()} đang có thể trạng là: {getThetrang(matt)}")
 
     tmp = getTapLuyen()
@@ -55,8 +63,8 @@ def Activity():
 
     tmp = getMucDich()
     person.setPhase(tmp)
-
-    print("Bạn muốn tư vấn về cái gì?")
+    time.sleep(1)
+    print("Bạn muốn tư vấn về vấn đề gì?")
     print("1. Chế độ dinh dưỡng")
     print("2. Chế độ luyện tập")
     print("3. Cả hai")
@@ -164,6 +172,7 @@ def recommend_diet(calo_diet):
 
 
 def Recommend_respon_diet(chedoan):
+    time.sleep(1)
     print(
         """Theo như thông tin bạn cung cấp, tôi đã tìm được 
         chế độ ăn phù hợp cho bạn như sau:"""
@@ -171,6 +180,7 @@ def Recommend_respon_diet(chedoan):
     while len(chedoan) > 0:
         chedo = chedoan.pop()
         print(chedo)
+        time.sleep(1)
         print("Bạn đã hài lòng với thực đơn này chưa?")
         print("1. Rồi")
         print("2. Tôi muốn xem thực đơn khác")
@@ -200,6 +210,12 @@ chế độ tập luyện phù hợp cho bạn như sau:"""
     print("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
     print("Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi")
 
+def generate_message(message):
+    for line in message.split('\n'):
+        for char in line:
+            print(char, end='', flush=True)
+            time.sleep(0.1)  # Đợi 0.1 giây giữa các ký tự
+        print()  # Xuống dòng sau mỗi dòng
 
 def Recommend_respon_both(cacbaitap, chedoan):
     print(
@@ -234,8 +250,10 @@ def Recommend_respon_both(cacbaitap, chedoan):
                 print("Hiện tại chúng tôi đã hết những thực đơn phù hợp với bạn")
                 print("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
                 break
-        print(baitap)
-        print(chedo)
+        generate_message(baitap)
+        generate_message(chedo)
+        # print(baitap)
+        # print(chedo)
         print("Bạn có hài lòng với sự tư vấn không")
         print("1. Rồi")
         print("2. Tôi muốn xem lịch tập khác")
@@ -259,11 +277,12 @@ def main():
         print(
         "Xin chào, tôi là chatbot tư vấn chế độ dinh dưỡng và luyện tập cho người tập gym"
     )
+        time.sleep(1)
         print("Để thực hiện việc tư vấn tôi cần biết một số thông tin của bạn")
+        time.sleep(1)
         provide_info = input("Bạn có sẵn sàng cung cấp thông tin cho tôi không?\n")
         if validat_binary_answer(provide_info):
             tuvan = Activity()
-
             calo_exe, calo_diet = predict()
             cacbaitap = recommend_exe(calo_exe, person.getPhase())
             chedoan = recommend_diet(calo_diet)
