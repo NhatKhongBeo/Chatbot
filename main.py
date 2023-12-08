@@ -1,12 +1,34 @@
+import sys
+
+original_stdout = sys.stdout
+original_stderr = sys.stderr
+
+class DummyFile:
+    def write(self, x): pass
+sys.stdout = DummyFile()
+sys.stderr = DummyFile()
+
 from Person import Person
 from Validate import *
+import os
+os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+
+import warnings
+
+warnings.filterwarnings("ignore")
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="tensorflow")
+
 from tensorflow.keras.models import load_model
 from Data import *
 import time
 
+import tensorflow as tf
+
 person = Person()
 data = Data()
-
+sys.stdout = original_stdout
+sys.stderr = original_stderr
 
 def Activity():
     time.sleep(1)
@@ -101,8 +123,9 @@ def predict():
         ]
     ]
 
-    y_exe = model_exe.predict(x)
-    y_diet = model_diet.predict(x)
+    y_exe = model_exe.predict(x,verbose=0)
+    y_diet = model_diet.predict(x,verbose=0)
+
 
     return y_exe, y_diet
 
@@ -210,12 +233,14 @@ chế độ tập luyện phù hợp cho bạn như sau:"""
     print("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
     print("Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi")
 
+
 def generate_message(message):
-    for line in message.split('\n'):
+    for line in message.split("\n"):
         for char in line:
-            print(char, end='', flush=True)
-            time.sleep(0.1)  # Đợi 0.1 giây giữa các ký tự
+            print(char, end="", flush=True)
+            time.sleep(0.01)  # Đợi 0.1 giây giữa các ký tự
         print()  # Xuống dòng sau mỗi dòng
+
 
 def Recommend_respon_both(cacbaitap, chedoan):
     print(
@@ -267,18 +292,19 @@ def Recommend_respon_both(cacbaitap, chedoan):
         elif i == 3:
             tmp = 3
     print("Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi")
-    
 
 
 def main():
     data = Data()
-    person= Person()
+    person = Person()
     while True:
         print(
-        "Xin chào, tôi là chatbot tư vấn chế độ dinh dưỡng và luyện tập cho người tập gym"
-    )
+            "Xin chào, tôi là chatbot tư vấn chế độ dinh dưỡng và luyện tập cho người tập gym"
+        )
         time.sleep(1)
-        print("Để thực hiện việc tư vấn tôi cần biết một số thông tin của bạn")
+        print(
+            "Để thực hiện việc tư vấn tôi cần biết một số thông tin của bạn"
+        )
         time.sleep(1)
         provide_info = input("Bạn có sẵn sàng cung cấp thông tin cho tôi không?\n")
         if validat_binary_answer(provide_info):
