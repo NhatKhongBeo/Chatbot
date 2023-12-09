@@ -1,9 +1,9 @@
-Thứ 2: Cardio: 10 - 30 phút
+Thứ Hai: Cardio: 10 - 30 phút
 - Đạp xe
 - Đi bộ
 - Nhảy dây
 
-Thứ 3: 
+Thứ Ba: 
 - Chạy bộ 2km
 - Push Up: 3 sets x 8 reps
 - Battle Rope Slams: 3 sets x 12 reps
@@ -11,10 +11,10 @@ Thứ 3:
 - Lat Pulldown: 3 sets x 8 reps
 - Dumbbell Hammer Press: 3 sets x 8 reps
 
-Thứ 4:
+Thứ Tư:
 - Nghỉ ngơi và tập giãn cơ nhẹ nhàng
 
-Thứ 5:
+Thứ Năm:
 - Cardio: 10 - 30 phút
 - Chạy bộ 2km
 - Medicine Ball Squat: 3 sets x 12 reps
@@ -22,7 +22,7 @@ Thứ 5:
 - Leg Extension 3 sets x 8 reps
 - Leg Curl: 3 sets x 8 reps
 
-Thứ 6:
+Thứ Sáu:
 - Chạy bộ 2km
 - Push Up: 3 sets x 8 reps
 - Battle Rope Slams: 3 sets x 12 reps
@@ -30,7 +30,7 @@ Thứ 6:
 - Lat Pulldown: 3 sets x 8 reps
 - Dumbbell Hammer Press: 3 sets x 8 reps
 
-Thứ 7:
+Thứ Bảy:
 - Đạp xe hoặc đi bộ 30 phút - 1 tiếng
 Chủ Nhật:
 - Nghỉ

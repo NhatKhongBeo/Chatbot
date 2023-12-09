@@ -1,8 +1,8 @@
-Thứ 2: Cardio Intensive
+Thứ Hai: Cardio Intensive
 - Lựa chọn một hoạt động cardio: Đạp xe, đi bộ, nhảy dây
 - Thời lượng: 25-45 phút
 
-Thứ 3: Full Body Strength và Cardio
+Thứ Ba: Full Body Strength và Cardio
 1. Chạy bộ 3km
 2. Push Up: 4 sets x 12 reps
 3. Battle Rope Slams: 4 sets x 20 reps
@@ -11,9 +11,9 @@ Thứ 3: Full Body Strength và Cardio
 6. Dumbbell Hammer Press: 4 sets x 12 reps
 7. Cardio HIIT: 20 phút (ví dụ: sprints hoặc burpees)
 
-Thứ 4: Active Recovery - Yoga hoặc Đi Bộ Nhẹ Nhàng
+Thứ Tư: Active Recovery - Yoga hoặc Đi Bộ Nhẹ Nhàng
 
-Thứ 5: Cardio và Lower Body Focus
+Thứ Năm: Cardio và Lower Body Focus
 1. Chạy bộ 4km
 2. Medicine Ball Squat: 4 sets x 15 reps
 3. Mountain Climbers: 4 sets x 30 reps
@@ -21,7 +21,7 @@ Thứ 5: Cardio và Lower Body Focus
 5. Leg Curl: 4 sets x 12 reps
 6. Cardio nhảy dây: 20 phút
 
-Thứ 6: Full Body Strength và Cardio
+Thứ Sáu: Full Body Strength và Cardio
 1. Chạy bộ 3km
 2. Push Up: 4 sets x 12 reps
 3. Battle Rope Slams: 4 sets x 20 reps
@@ -30,7 +30,7 @@ Thứ 6: Full Body Strength và Cardio
 6. Dumbbell Hammer Press: 4 sets x 12 reps
 7. Cardio HIIT: 20 phút
 
-Thứ 7: Cardio Session - High Intensity
+Thứ Bảy: Cardio Session - High Intensity
 - Đạp xe hoặc đi bộ: 45 phút - 1.5 tiếng
 
 Chủ Nhật: Rest Day or Light Activity
