@@ -1,11 +1,19 @@
 import mysql.connector
 import json
 import re
-
+import time
 
 mydb = mysql.connector.connect(
     host="127.0.0.1", user="root", password="Nhattu3004", database="chatbot"
 )
+
+
+def generate_message(message):
+    for line in message.split("\n"):
+        for char in line:
+            print(char, end="", flush=True)
+            time.sleep(0.01)
+        print()
 
 
 class Data:
@@ -54,12 +62,12 @@ def getTapLuyen():
     db.execute(query)
     tapluyen = db.fetchall()
 
-    print("Trước đây bạn tập luyện thể thao với mức độ nào?")
-    print("Nhập số tương ứng với lựa chọn")
+    generate_message("Trước đây bạn tập luyện thể thao với mức độ nào?")
+    generate_message("Nhập số tương ứng với lựa chọn")
 
     count = 1
     while count <= len(tapluyen):
-        print(f"{count}. {tapluyen[count-1][0]}")
+        generate_message(f"{count}. {tapluyen[count-1][0]}")
         count += 1
     while True:
         try:
@@ -67,9 +75,9 @@ def getTapLuyen():
             if tmp > 0 and tmp <= len(tapluyen):
                 return tmp
             else:
-                print("Bạn đã nhập sai, vui lòng nhập lại")
+                generate_message("Bạn đã nhập sai, vui lòng nhập lại")
         except:
-            print("Bạn đã nhập sai, vui lòng nhập lại")
+            generate_message("Bạn đã nhập sai, vui lòng nhập lại")
 
 
 def getMucDich():
@@ -79,12 +87,12 @@ def getMucDich():
     db.execute(query)
     mucdich = db.fetchall()
 
-    print("Bạn muốn tập luyện với mục đích gì?")
-    print("Nhập số tương ứng với lựa chọn")
+    generate_message("Bạn muốn tập luyện với mục đích gì?")
+    generate_message("Nhập số tương ứng với lựa chọn")
 
     count = 1
     while count <= len(mucdich):
-        print(f"{count}. {mucdich[count-1][0]}")
+        generate_message(f"{count}. {mucdich[count-1][0]}")
         count += 1
     while True:
         try:
@@ -92,6 +100,6 @@ def getMucDich():
             if tmp > 0 and tmp <= len(mucdich):
                 return tmp
             else:
-                print("Bạn đã nhập sai, vui lòng nhập lại")
+                generate_message("Bạn đã nhập sai, vui lòng nhập lại")
         except:
-            print("Bạn đã nhập sai, vui lòng nhập lại")
+            generate_message("Bạn đã nhập sai, vui lòng nhập lại")
