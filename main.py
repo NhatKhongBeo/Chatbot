@@ -7,10 +7,13 @@ original_stderr = sys.stderr
 class DummyFile:
     def write(self, x):
         pass
+
     def flush(self):
         pass
+
     def close(self):
         pass
+
 
 sys.stdout = DummyFile()
 sys.stderr = DummyFile()
@@ -80,10 +83,10 @@ def Activity():
         if weight is not None:
             person.setWeight(weight)
             break
-        else: 
+        else:
             print("Chatbot: ", end="")
             generate_message("Cân nặng nhập không hợp vệ, vui lòng nhập lại")
-    print("Chatbot: ", end="")        
+    print("Chatbot: ", end="")
     generate_message(f"Chiều cao của {person.getName()} là bao nhiêu ?")
     while True:
         generate_message("Nhập chiều cao tính bằng cm")
@@ -141,25 +144,22 @@ def predict():
     model_exe = load_model(".\model_exe.h5")
     model_diet = load_model(".\model_diet.h5")
 
-    x = [
-        [
+    x = [[
             person.getHight(),
             person.getWeight(),
             person.getBMI(),
             person.getIntensity(),
             person.getPhase(),
-        ]
-    ]
+        ]]
 
     y_exe = model_exe.predict(x, verbose=0)
     y_diet = model_diet.predict(x, verbose=0)
-
     return y_exe[0][0], y_diet[0][0]
 
 
 def recommend_exe(calo_exe, phase):
     print("Chatbot: ", end="")
-    mess=f'Dựa vào thông tin bạn cung cấp, tôi đoán bạn cần đốt khoảng {round(calo_exe,-1)} calo mỗi ngày'
+    mess = f"Dựa vào thông tin bạn cung cấp, tôi đoán bạn cần đốt khoảng {round(calo_exe,-1)} calo mỗi ngày"
     generate_message(mess)
     if calo_exe < 1100:
         che_do_exe = "TL01"
@@ -184,7 +184,7 @@ def recommend_exe(calo_exe, phase):
 
 def recommend_diet(calo_diet):
     print("Chatbot: ", end="")
-    mess=f'Dựa vào thông tin bạn cung cấp, tôi dự tính bạn cần nạp khoảng {round(calo_diet,-1)} calo mỗi ngày'
+    mess = f"Dựa vào thông tin bạn cung cấp, tôi dự tính bạn cần nạp khoảng {round(calo_diet,-1)} calo mỗi ngày"
     generate_message(mess)
     if calo_diet < 2300 and calo_diet > 1800:
         diet = "DI04"
@@ -218,9 +218,11 @@ chế độ ăn phù hợp cho bạn như sau:"""
         generate_message("2. Tôi muốn xem thực đơn khác")
         print("Người dùng: ", end="")
         while True:
-            check=int(input())
+            check = int(input())
             if check == 1:
-                generate_message("Đây chỉ là một số thực đơn mẫu, bạn có thể thay đổi và tham khảo để phù hợp với bạn.\nCảm ơn bạn đã sử dụng dịch vụ của chúng tôi")
+                generate_message(
+                    "Đây chỉ là một số thực đơn mẫu, bạn có thể thay đổi và tham khảo để phù hợp với bạn.\nCảm ơn bạn đã sử dụng dịch vụ của chúng tôi"
+                )
                 return
             elif check == 2:
                 print("Chatbot: ", end="")
@@ -228,7 +230,9 @@ chế độ ăn phù hợp cho bạn như sau:"""
                 break
             else:
                 print("Chatbot: ", end="")
-                generate_message("Câu trả lời không phù hợp.Bạn vui lòng nhập lại")
+                generate_message(
+                    "Câu trả lời không phù hợp.Bạn vui lòng nhập lại"
+                )
     generate_message("Hiện tại chúng tôi đã hết những thực đơn phù hợp với bạn")
     generate_message("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
     generate_message("Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi")
@@ -249,15 +253,19 @@ chế độ tập luyện phù hợp cho bạn như sau:"""
             check = int(input())
             if check == 1:
                 print("Chatbot: ", end="")
-                generate_message("Đây chỉ là một số thực đơn mẫu, bạn có thể thay đổi và tham khảo để phù hợp với bạn. \nCảm ơn bạn đã sử dụng dịch vụ của chúng tôi")
+                generate_message(
+                    "Đây chỉ là một số thực đơn mẫu, bạn có thể thay đổi và tham khảo để phù hợp với bạn. \nCảm ơn bạn đã sử dụng dịch vụ của chúng tôi"
+                )
                 return
-            elif check==2:
+            elif check == 2:
                 print("Chatbot: ", end="")
                 generate_message("Đây là một bài tập mẫu khác dành cho bạn")
                 break
             else:
                 print("Chatbot: ", end="")
-                generate_message("Câu trả lời không phù hợp. Bạn vui lòng nhập lại")
+                generate_message(
+                    "Câu trả lời không phù hợp. Bạn vui lòng nhập lại"
+                )
     print("Chatbot: ", end="")
     generate_message("Hiện tại chúng tôi đã hết những thực đơn phù hợp với bạn")
     generate_message("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
@@ -306,7 +314,7 @@ chế độ tập luyện và chế độ ăn uống phù hợp cho bạn nh
                 break
         generate_message("Bài tập tôi đề xuất cho bạn là:")
         generate_message(baitap)
-        generate_message("Chế độ ăn tôi đề xuất cho bạn là:")   
+        generate_message("Chế độ ăn tôi đề xuất cho bạn là:")
         generate_message(chedo)
         generate_message("Bạn có hài lòng với sự tư vấn không")
         generate_message("1. Rồi")
@@ -330,7 +338,9 @@ chế độ tập luyện và chế độ ăn uống phù hợp cho bạn nh
                 break
             else:
                 print("Chatbot: ", end="")
-                generate_message("Câu trả lời không phù hợp. Bạn vui lòng nhập lại")
+                generate_message(
+                    "Câu trả lời không phù hợp. Bạn vui lòng nhập lại"
+                )
     generate_message("Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi")
 
 
@@ -344,11 +354,11 @@ def main():
         "Để thực hiện việc tư vấn tôi cần biết một số thông tin của bạn"
     )
     generate_message("Bạn có sẵn sàng cung cấp thông tin cho tôi không?")
-    
+
     while True:
         print("Người dùng: ", end="")
         provide_info = input()
-        if validat_binary_answer(provide_info)==True:
+        if validat_binary_answer(provide_info) == True:
             tuvan = Activity()
             calo_exe, calo_diet = predict()
 
@@ -363,8 +373,8 @@ def main():
                 chedoan = recommend_diet(calo_diet)
                 Recommend_respon_both(cacbaitap, chedoan)
             break
-        elif validat_binary_answer(provide_info)==False:
-            print("Chatbot: ", end="")  
+        elif validat_binary_answer(provide_info) == False:
+            print("Chatbot: ", end="")
             tmp = """Nếu không cung cấp thông tin, chung tôi sẽ không thể tư vấn cho bạn
 Xin cảm ơn bạn đã đến với hệ thống của chúng thôi
 Chúc bạn một ngày tốt lành"""
