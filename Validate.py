@@ -1,10 +1,12 @@
+from unidecode import unidecode
+
 def validat_binary_answer(answer):
     acceptance_answers = ["1", "y", "Y", "yes", "có", "co"]
     decline_answers = ["0", "n", "N", "no", "không", "khong"]
-    answer = answer.lower()
-    if answer in acceptance_answers:
+    a = answer.lower()
+    if any(unidecode(a)==unidecode(x) for x in acceptance_answers):
         return True
-    elif answer in decline_answers:
+    elif any(unidecode(a)== unidecode(x) for x in decline_answers):
         return False
     else:
         return None
@@ -39,7 +41,7 @@ def check_age(input):
     age = check_int(input)
     if age is not None:
         try:
-            if age < 16 or age > 60:
+            if age < 15 or age > 60:
                 raise ValueError("Lỗi: Tuổi không hợp lệ.")
             return age
         except ValueError as ve:

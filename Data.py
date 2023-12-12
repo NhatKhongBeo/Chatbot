@@ -64,19 +64,22 @@ def getTapLuyen():
 
     generate_message("Trước đây bạn tập luyện thể thao với mức độ nào?")
     generate_message("Nhập số tương ứng với lựa chọn")
-
+    
     count = 1
     while count <= len(tapluyen):
         generate_message(f"{count}. {tapluyen[count-1][0]}")
         count += 1
     while True:
         try:
+            print("Người dùng: ", end="")
             tmp = int(input())
             if tmp > 0 and tmp <= len(tapluyen):
                 return tmp
             else:
+                print("Chatbot: ", end="")
                 generate_message("Bạn đã nhập sai, vui lòng nhập lại")
         except:
+            print("Chatbot: ", end="")
             generate_message("Bạn đã nhập sai, vui lòng nhập lại")
 
 
@@ -86,8 +89,9 @@ def getMucDich():
     query = "SELECT mota FROM chatbot.mucdich"
     db.execute(query)
     mucdich = db.fetchall()
-
-    generate_message("Bạn muốn tập luyện với mục đích gì?")
+    
+    print("Chatbot: ", end="")
+    generate_message("Mục tiêu của bạn khi tập Gym là gì?")
     generate_message("Nhập số tương ứng với lựa chọn")
 
     count = 1
@@ -96,10 +100,13 @@ def getMucDich():
         count += 1
     while True:
         try:
+            print("Người dùng: ", end="")
             tmp = int(input())
             if tmp > 0 and tmp <= len(mucdich):
                 return tmp
             else:
+                print("Chatbot: ", end="")
                 generate_message("Bạn đã nhập sai, vui lòng nhập lại")
         except:
+            print("Chatbot: ", end="")
             generate_message("Bạn đã nhập sai, vui lòng nhập lại")
