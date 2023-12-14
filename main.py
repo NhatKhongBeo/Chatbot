@@ -1,5 +1,5 @@
 import sys
-
+import random
 original_stdout = sys.stdout
 original_stderr = sys.stderr
 
@@ -56,48 +56,49 @@ def Activity():
     while True:
         print("Người dùng: ", end="")
         name = input()
-        if check_name(name) == name:
+        name_tmp=check_name(name)
+        if name_tmp == name:
             person.setName(name)
             break
         else:
             print("Chatbot: ", end="")
-            generate_message("Tên nhập không hợp vệ, vui lòng nhập lại")
+            generate_message(name_tmp)
     print("Chatbot: ", end="")
     generate_message(f"{person.getName()} bao nhiêu tuổi?")
     while True:
         generate_message("Nhập số tuổi từ 15 - 60 tuổi")
         print("Người dùng: ", end="")
         age = check_age(input())
-        if age is not None:
+        if str(age).isdigit():
             person.setAge(age)
             break
         else:
             print("Chatbot: ", end="")
-            generate_message("Tuổi nhập không hợp vệ, vui lòng nhập lại")
+            generate_message(age)
     print("Chatbot: ", end="")
     generate_message(f"Số cân nặng của {person.getName()} là bao nhiêu kg?")
     while True:
-        generate_message("Nhập số kg")
+        generate_message("Nhập số kg, từ 30 - 130 kg")
         print("Người dùng: ", end="")
         weight = check_weight(input())
-        if weight is not None:
+        if  isinstance(weight, float):
             person.setWeight(weight)
             break
         else:
             print("Chatbot: ", end="")
-            generate_message("Cân nặng nhập không hợp vệ, vui lòng nhập lại")
+            generate_message(weight)
     print("Chatbot: ", end="")
     generate_message(f"Chiều cao của {person.getName()} là bao nhiêu ?")
     while True:
-        generate_message("Nhập chiều cao tính bằng cm")
+        generate_message("Nhập chiều cao tính bằng cm, từ 130 - 220 cm")
         print("Người dùng: ", end="")
         height = check_height(input())
-        if height is not None:
+        if isinstance(height, float):
             person.setHight(height)
             break
         else:
             print("Chatbot: ", end="")
-            generate_message("Chiều cao nhập không hợp vệ, vui lòng nhập lại")
+            generate_message(height)
 
     person.setBMI()
     print("Chatbot: ", end="")
@@ -121,7 +122,17 @@ def Activity():
 3. Cả hai"""
     )
     print("Người dùng: ", end="")
-    tuvan = int(input())
+    while True:
+        try:
+            tuvan = int(input())
+            if tuvan not in [1, 2, 3]:
+                print("Chatbot: ", end="")
+                generate_message("Vui lòng nhập số theo các lựa chọn")
+                continue
+            break
+        except ValueError:
+            print("Chatbot: ", end="")
+            generate_message("Không nhập kí tự. Vui lòng nhập số theo các lựa chọn")
     return tuvan
 
 
@@ -218,7 +229,12 @@ chế độ ăn phù hợp cho bạn như sau:"""
         generate_message("2. Tôi muốn xem thực đơn khác")
         print("Người dùng: ", end="")
         while True:
-            check = int(input())
+            try:
+                check = int(input())
+            except ValueError:
+                print("Chatbot: ", end="")
+                generate_message("Không nhập kí tự. Bạn vui lòng nhập số theo lựa chọn")
+                continue
             if check == 1:
                 generate_message(
                     "Đây chỉ là một số thực đơn mẫu, bạn có thể thay đổi và tham khảo để phù hợp với bạn.\nCảm ơn bạn đã sử dụng dịch vụ của chúng tôi"
@@ -231,7 +247,7 @@ chế độ ăn phù hợp cho bạn như sau:"""
             else:
                 print("Chatbot: ", end="")
                 generate_message(
-                    "Câu trả lời không phù hợp.Bạn vui lòng nhập lại"
+                    "Câu trả lời không phù hợp. Vui lòng nhập số theo lựa chọn"
                 )
     generate_message("Hiện tại chúng tôi đã hết những thực đơn phù hợp với bạn")
     generate_message("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
@@ -250,7 +266,12 @@ chế độ tập luyện phù hợp cho bạn như sau:"""
         generate_message("1. Rồi")
         generate_message("2. Tôi muốn xem lịch tập khác")
         while True:
-            check = int(input())
+            try:
+                check = int(input())
+            except ValueError: 
+                print("Chatbot: ", end="")
+                generate_message("Không nhâp kí tự. Bạn vui lòng nhập số theo lựa chọn")
+                continue
             if check == 1:
                 print("Chatbot: ", end="")
                 generate_message(
@@ -285,6 +306,10 @@ chế độ tập luyện và chế độ ăn uống phù hợp cho bạn nh
             try:
                 baitap = cacbaitap.pop()
                 chedo = chedoan.pop()
+                generate_message("Bài tập tôi đề xuất cho bạn là:")
+                generate_message(baitap)
+                generate_message("\nChế độ ăn tôi đề xuất cho bạn là:")
+                generate_message(chedo)
             except IndexError:
                 print("Chatbot: ", end="")
                 generate_message(
@@ -295,16 +320,22 @@ chế độ tập luyện và chế độ ăn uống phù hợp cho bạn nh
         elif tmp == 2:
             try:
                 baitap = cacbaitap.pop()
+                print("Chatbot: ", end="")
+                generate_message("Đây là một bài tập mẫu khác dành cho bạn")
+                generate_message(baitap)
             except IndexError:
                 print("Chatbot: ", end="")
                 generate_message(
                     "Hiện tại chúng tôi đã hết những bài tập phù hợp với bạn"
                 )
-                generate_message("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
+                generate_message("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn:")
                 break
         elif tmp == 3:
             try:
                 chedo = chedoan.pop()
+                print("Chatbot: ", end="")
+                generate_message("Đây là một thực đơn mẫu khác dành cho bạn:")
+                generate_message(chedo)
             except IndexError:
                 print("Chatbot: ", end="")
                 generate_message(
@@ -312,28 +343,27 @@ chế độ tập luyện và chế độ ăn uống phù hợp cho bạn nh
                 )
                 generate_message("Xin lỗi vì không thể đáp ứng được nhu cầu của bạn")
                 break
-        generate_message("Bài tập tôi đề xuất cho bạn là:")
-        generate_message(baitap)
-        generate_message("Chế độ ăn tôi đề xuất cho bạn là:")
-        generate_message(chedo)
         generate_message("Bạn có hài lòng với sự tư vấn không")
         generate_message("1. Rồi")
         generate_message("2. Tôi muốn xem bài tập khác")
         generate_message("3. Tôi muốn xem thực đơn khác")
         while True:
-            i = int(input())
+            try:
+                i = int(input())
+            except ValueError:
+                print("Chatbot: ", end="")
+                generate_message("Câu trả lời không phù hợp. Bạn vui lòng nhập số theo lựa chọn")
+                continue
             if i == 1:
                 print("Chatbot: ", end="")
-                generate_message("Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi")
+                generate_message(
+                    "Đây chỉ là một số thực đơn mẫu, bạn có thể thay đổi và tham khảo để phù hợp với bạn. \nCảm ơn bạn đã sử dụng dịch vụ của chúng tôi"
+                )
                 return
             elif i == 2:
-                print("Chatbot: ", end="")
-                generate_message("Đây là một bài tập mẫu khác dành cho bạn")
                 tmp = 2
                 break
             elif i == 3:
-                print("Chatbot: ", end="")
-                generate_message("Đây là một thực đơn mẫu khác dành cho bạn")
                 tmp = 3
                 break
             else:
@@ -364,13 +394,17 @@ def main():
 
             if tuvan == 1:
                 chedoan = recommend_diet(calo_diet)
+                random.shuffle(chedoan)
                 Recommend_respon_diet(chedoan)
             elif tuvan == 2:
                 cacbaitap = recommend_exe(calo_exe, person.getPhase())
+                random.shuffle(cacbaitap)
                 Recommend_respon_exe(cacbaitap)
             else:
                 cacbaitap = recommend_exe(calo_exe, person.getPhase())
                 chedoan = recommend_diet(calo_diet)
+                random.shuffle(cacbaitap)
+                random.shuffle(chedoan)
                 Recommend_respon_both(cacbaitap, chedoan)
             break
         elif validat_binary_answer(provide_info) == False:
