@@ -77,10 +77,10 @@ def getTapLuyen():
                 return tmp
             else:
                 print("Chatbot: ", end="")
-                generate_message("Bạn đã nhập sai, vui lòng nhập lại")
+                generate_message("Vui lòng nhập số đúng với các lựa chọn")
         except:
             print("Chatbot: ", end="")
-            generate_message("Bạn đã nhập sai, vui lòng nhập lại")
+            generate_message("Vui lòng không nhập kí tự khác số trong khoảng lựa chọn")
 
 
 def getMucDich():
@@ -106,7 +106,7 @@ def getMucDich():
                 return tmp
             else:
                 print("Chatbot: ", end="")
-                generate_message("Bạn đã nhập sai, vui lòng nhập lại")
+                generate_message("Vui lòng nhập số đúng với các lựa chọn")
         except:
             print("Chatbot: ", end="")
-            generate_message("Bạn đã nhập sai, vui lòng nhập lại")
+            generate_message("Vui lòng không nhập kí tự khác số trong khoảng lựa chọn")
