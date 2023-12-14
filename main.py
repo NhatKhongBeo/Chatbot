@@ -55,7 +55,7 @@ def Activity():
     generate_message("Tên của bạn là gì?")
     while True:
         print("Người dùng: ", end="")
-        name = input()
+        name = input().strip()
         name_tmp=check_name(name)
         if name_tmp == name:
             person.setName(name)
@@ -384,10 +384,10 @@ def main():
         "Để thực hiện việc tư vấn tôi cần biết một số thông tin của bạn"
     )
     generate_message("Bạn có sẵn sàng cung cấp thông tin cho tôi không?")
-
+    generate_message("Hãy trả lời có hoặc không.")
     while True:
         print("Người dùng: ", end="")
-        provide_info = input()
+        provide_info = input().strip()
         if validat_binary_answer(provide_info) == True:
             tuvan = Activity()
             calo_exe, calo_diet = predict()
